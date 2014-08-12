@@ -1,0 +1,48 @@
+h1. Arduino library for the Motor Shield R3
+
+Version: 1.0.0
+Release Date: 2014-03-10
+"Vadim Govorovski":http://www.govorovski.com/
+
+h2. Summary
+
+This is a library for the "Arduino Motor Driver Shield":http://arduino.cc/en/Main/ArduinoMotorShieldR3. It makes it simple to drive two brushed, DC motors.
+
+h2. Getting Started
+
+h3. Software
+
+Download the archive from "GitHub":https://github.com/govorox/ArduinoMotorShieldR3, decompress it, and drag the "ArduinoMotorShield" folder to your arduino-xx/libraries directory. Then restart the Arduino environment, so the libraries can be updated to include the library and its examples.
+
+h3. Hardware
+
+Information about the Motor Shield can be found here: "Motor Shield":http://arduino.cc/en/Main/ArduinoMotorShieldR3.
+
+h2. Example Program
+
+h3. Demo
+
+Open this example code sketch by selecting File->Examples->DualMC33926MotorShield->Demo.
+
+The demo ramps motor 1 from stopped to full speed forward, ramps down to full speed reverse, and back to stopped. Then, it does the same with the other motor. Both motor's current readings are sent over serial and can be seen with the serial monitor. If a fault is detected, a message is sent over serial.
+
+h2. Library Reference
+
+- @ArduinoMotorShield()@ := Default constructor, selects the default pins as connected by the motor shield.
+- @ArduinoMotorShield(unsigned char M1DIR, unsigned char M1PWM, unsigned char M1FB,@
+@unsigned char M2DIR, unsigned char M2PWM, unsigned char M2FB, unsigned char M2BRK)@ := Alternate constructor for shield connections remapped by user. M1PWM and M2PWM cannot be remapped because the library assumes PWM is on timer1.
+
+- @void init()@ := Initialize pinModes and timer1.
+
+- @void setM1Speed(int speed)@ := Set speed and direction for motor 1. Speed should be between -400 and 400. 400 corresponds to motor current flowing from M1A to M1B. -400 corresponds to motor current flowing from M1B to M1A.
+- @void setM2Speed(int speed)@ := Set speed and direction for motor 2. Speed should be between -400 and 400. 400 corresponds to motor current flowing from M2A to M2B. -400 corresponds to motor current flowing from M2B to M2A.
+- @void setSpeeds(int m1Speed, int m2Speed)@ := Set speed and direction for motor 1 and 2. 
+
+- @unsigned int getM1CurrentMilliamps()@ := Returns current reading from motor 1 in milliamps.
+- @unsigned int getM2CurrentMilliamps()@ := Returns current reading from motor 2 in milliamps.
+
+- @unsigned char getFault()@ := Returns 1 if there is a motor driver fault, 0 if no fault.
+
+h2. Version History
+
+* 1.0.0 (2014-03-10): Original release.
